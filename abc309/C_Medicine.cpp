@@ -15,28 +15,18 @@ int main(){
   cin >> n >> k;
   for (int i = 1; i <= n; i++){
     cin >> a[i].a >> a[i].b;
+    sum += a[i].b;
     a[i].id = i;
   }
   sort(a + 1, a + n + 1);
-  for (int i = 1; i <= n; i++){
-    cout << a[i].a << ' ' << a[i].b << ' ' << a[i].id << '\n';
-  }
-  for (int i = 1, j = 1; ; i++){
-    cout << i << ' ' << cnt << ' ' << a[b.front()].b << ' ' << a[b.front()].id << '\n';
-    if (a[j].a >= i){
-      b.push(a[j].id);
-      cnt += a[j].b;
-      j++;
-    }
-    cout << i << ' ' << cnt << ' ' << a[b.front()].b << ' ' << a[b.front()].id << '\n';
-    while (b.size() && a[b.front()].a < i){
-      cnt -= a[b.front()].b;
-      b.pop();
-    }
-    if (cnt <= k){
-      cout << i;
+  for (int i = 1, j = 1; ; j++){
+    if (sum <= k){
+      cout << max(1, j - 1);
       return 0;
     }
+    sum -= a[i].b;
+    j = a[i].a + 1;
+    i++;
   }
   return 0;
 }
