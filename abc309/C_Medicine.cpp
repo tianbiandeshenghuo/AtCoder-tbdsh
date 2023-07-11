@@ -19,9 +19,9 @@ int main(){
     a[i].id = i;
   }
   sort(a + 1, a + n + 1);
-  for (int i = 1, j = 1; ; j++){
+  for (int i = 1, j = 1; ; ){
     if (sum <= k){
-      cout << max(1, j - 1);
+      cout << j;
       return 0;
     }
     sum -= a[i].b;
