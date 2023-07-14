@@ -7,11 +7,10 @@ int main(){
   ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
   freopen("t.in", "w", stdout);
   random_device rd;
-  cout << "1\n";
   int n = rd(10) + 1;
   cout << n << '\n';
   for (int i = 1; i <= n; i++){
-    cout << rd(n) << ' ';
+    cout << rd(15) << ' ';
   }
   return 0;
 }
