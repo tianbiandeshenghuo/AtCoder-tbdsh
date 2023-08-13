@@ -2,7 +2,7 @@
 
 using namespace std;
 const int MAXN = 2e5 + 5;
-long long n, a[MAXN];
+long long n, a[MAXN], b[MAXN];
 long long ans;
 long long x;
 int main(){
@@ -12,14 +12,15 @@ int main(){
     cin >> a[i];
     x += a[i];
   }
-  x = 1.0 * x / n + 0.49;
-  for (int i = 1; i <= n; i++){
-    if (abs(a[i] - x) >= 1){
-      ans += abs(a[i] - x);
-    }
+  long long q = x / n, p = x % n;
+  sort(a + 1, a + n + 1);
+  for (int i = 1; i <= n - p; i++){
+    ans += abs(q - a[i]);
   }
-  //cerr << x << ' ' << ans << ' ' << ans % n << '\n';
-  long long op = 0.49 + ans / 2;
-  cout << op;
+  for (int i = n - p + 1; i <= n; i++){
+    ans += abs(a[i] - (q + 1));
+  }
+  //cout << x << ' ' << ans << '\n';
+  cout << ans / 2;
   return 0;
 }
