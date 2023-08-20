@@ -2,7 +2,7 @@
 #define int long long
 
 using namespace std;
-const int MAXN = 2e5 + 5, Mod = 998244353;//
+const int MAXN = 2e5 + 5, Mod = 998244353;
 int n, c[MAXN], sum[MAXN], qp[MAXN];
 long long inv[2 * MAXN];
 vector<int> b[MAXN];
