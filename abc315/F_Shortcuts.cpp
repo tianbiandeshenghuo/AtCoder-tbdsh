@@ -66,3 +66,44 @@ int main(){
   return 0;
 }
 */
+/*
+正解,O(n*40*40)
+*/
+#include<bits/stdc++.h>
+
+using namespace std;
+const int MAXN = 1e4 + 5;
+int n;
+long double dp[MAXN][205];
+struct Node{
+  int x, y;
+} a[MAXN];
+long double jl(int x, int y){
+  long double pop = 1.0;
+  return sqrt(pop * (a[x].x - a[y].x) * (a[x].x - a[y].x) + pop * (a[x].y - a[y].y) * (a[x].y - a[y].y));
+}
+int main(){
+  ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+  cin >> n;
+  cerr << fixed << setprecision(10);
+  for (int i = 1; i <= n; i++){
+    cin >> a[i].x >> a[i].y;
+    for (int j = 0; j <= 200; j++){
+      dp[i][j] = 1e50;
+    }
+  }
+  dp[1][0] = 0;
+  for (int i = 2; i <= n; i++){
+    for (int k = 0; k <= 40; k++){
+      for (int j = i - 1; i - j <= 40 && j >= 1; j--){
+        dp[i][k + i - j - 1] = min(dp[i][k + i - j - 1], dp[j][k] + jl(i, j));
+      }
+    }
+  }
+  long double ans = dp[n][0];
+  for (int i = 1; i <= 40; i++){
+    ans = min(ans, dp[n][i] + (1ll << (i - 1)));
+  }
+  cout << fixed << setprecision(100) << ans;
+  return 0;
+}
